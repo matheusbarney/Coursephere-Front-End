@@ -1,10 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/users')
+      .then(response => response.json())
+      .then(data => setItems(data))
+      .catch(error => console.error('Error fetching users:', error));
+  }, []);
 
   return (
     <>
@@ -28,6 +36,12 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <h1>{items.length > 0 ? "Users:" : "No users found"}</h1>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>{item.name} - {item.email}</li>
+        ))}
+      </ul>
     </>
   )
 }
