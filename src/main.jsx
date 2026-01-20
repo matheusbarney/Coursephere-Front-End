@@ -7,8 +7,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const router = createBrowserRouter([
   {path: "/", element: <App />},
   // {path: "/user", element: <User />},
-  // {path: "/course", element: <Course />},
-  // {path: "/course/lesson", element: <Lesson />},
+  // {path: "/user/:userId", element: <UserItem />},
+  // {path: "/courses", element: <Course />},
+  // {path: "/courses/:courseId", element: <CourseItem />},
+  // {path: "/courses/lesson", element: <Lesson />},
+  // {path: "/courses/lesson/:lessonId", element: <LessonItem />},
 ]);
 
 createRoot(document.getElementById('root')).render(

@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Ana Maria",
+      "email": "ana@coursesphere.com",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "name": "Beto Carlos",
+      "email": "carlos@coursesphere.com",
+      "password": "123456"
+    },
+    {
+      "id": "3",
+      "name": "Carla Silva",
+      "email": "beatriz@coursesphere.com",
+      "password": "123456"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "name": "React Avançado com Hooks",
+      "description": "Domine o desenvolvimento moderno com React, Context API e Hooks customizados.",
+      "start_date": "2026-01-19",
+      "end_date": "2026-04-19",
+      "creator_id": "1",
+      "instructors": ["2"]
+    },
+    {
+      "id": "2",
+      "name": "Fundamentos de Node.js",
+      "description": "Aprenda a construir APIs robustas e escaláveis.",
+      "start_date": "2026-01-19",
+      "end_date": "2026-04-19",
+      "creator_id": "2",
+      "instructors": ["1"]
+    },
+    {
+      "id": "3",
+      "name": "UI/UX Design para Devs",
+      "description": "Princípios básicos de design para desenvolvedores front-end.",
+      "start_date": "2026-01-19",
+      "end_date": "2026-04-19",
+      "creator_id": "1",
+      "instructors": []
+    }
+  ],
+  "lessons": [
+    {
+      "id": "101",
+      "course_id": "1",
+      "creator_id": "1",
+      "title": "Introdução aos Hooks",
+      "status": "published",
+      "publish_date": "2026-01-19",
+      "video_url": "https://www.youtube.com/watch?v=XIMLoLxmTDw"
+    },
+    {
+      "id": "102",
+      "course_id": "1",
+      "creator_id": "2",
+      "title": "UseEffect na Prática",
+      "status": "draft",
+      "publish_date": "2026-01-19",
+      "video_url": "https://www.youtube.com/watch?v=XIMLoLxmTDw"
+    },
+    {
+      "id": "201",
+      "course_id": "2",
+      "creator_id": "2",
+      "title": "Configurando o Ambiente Node.js",
+      "status": "published",
+      "publish_date": "2026-01-19",
+      "video_url": "https://www.youtube.com/watch?v=XIMLoLxmTDw"
+    }
+  ]
+}
