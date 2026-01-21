@@ -11,14 +11,20 @@ import CourseEdit from './app/pages/Course/CourseEdit/CourseEdit.jsx';
 import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails.jsx';
 import LessonEdit from './app/pages/Course/Lessons/LessonEdit/LessonEdit.jsx';
 //
+import ProtectedRoutes from './utils/ProtectedRoutes.jsx';
+//
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
-  // Dashboard 
-  {path: "/", element: <Dashboard />},
 
   // Login 
   {path: "/login", element: <Login />},
+
+  // Protected Routes : Dashboard
+  // Dashboard 
+  {element: <ProtectedRoutes />, children: [
+      {path: "/", element: <Dashboard />},
+  ]},
 
   // Course and Lesson 
   {path: "/course/:courseId", children: [ 
