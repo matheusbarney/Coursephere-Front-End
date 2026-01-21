@@ -4,13 +4,13 @@ import AuthContext from '../contexts/auth';
 
 const ProtectedRoutes = () => {
     const { user } = useContext(AuthContext);
-    return user ? < Outlet/ > : < Outlet/ >
+    return user ? < Outlet/ > : < Navigate to="/login"/>
 }
 
 export const RerouteLogin = () => {
     const { user } = useContext(AuthContext);
     console.log(user);
-    return user ? < Outlet/ > : <Outlet />;
+    return user ? <Navigate to="/" /> : <Outlet />;
 }
 
 export default ProtectedRoutes
