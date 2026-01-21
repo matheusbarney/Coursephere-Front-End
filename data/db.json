@@ -3,19 +3,19 @@
     {
       "id": "1",
       "name": "Ana Maria",
-      "email": "ana@coursesphere.com",
+      "email": "a@g.com",
       "password": "123456"
     },
     {
       "id": "2",
       "name": "Beto Carlos",
-      "email": "carlos@coursesphere.com",
+      "email": "b@g.com",
       "password": "123456"
     },
     {
       "id": "3",
       "name": "Carla Silva",
-      "email": "beatriz@coursesphere.com",
+      "email": "c@g.com",
       "password": "123456"
     }
   ],
