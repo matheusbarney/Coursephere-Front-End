@@ -7,7 +7,10 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     
-    const [user, setUser] = useState(null); 
+    const [user, setUser] = useState(() => {
+        const saved = localStorage.getItem('user');
+        return saved || null;
+    }); 
 
     async function Login(email, password) {
         try {
@@ -17,7 +20,9 @@ export const AuthProvider = ({ children }) => {
             const foundUser = users.find(u => u.email === email && u.password === password )
 
             if (foundUser) {
-                setUser(foundUser)
+                setUser(foundUser);
+                // save in localStorage
+                localStorage.setItem('user', JSON.stringify(foundUser))
                 console.log('Signed:', foundUser);
                 return foundUser;
             } else {
