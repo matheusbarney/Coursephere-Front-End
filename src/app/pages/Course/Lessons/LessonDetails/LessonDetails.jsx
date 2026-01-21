@@ -1,5 +1,3 @@
-
-import '../../../../../App.css'
 import{ use, useEffect, useState} from 'react';
 import{ useParams } from 'react-router-dom';
 
