@@ -14,7 +14,7 @@ import LessonEdit from './app/pages/Course/Lessons/LessonEdit/LessonEdit';
 import ProtectedRoutes, { RerouteLogin } from './utils/ProtectedRoutes';
 //
 
-
+ //localStorage.clear();
 
 const router = createBrowserRouter([
   // Login 
