@@ -2,7 +2,7 @@ import React from "react";
 
 import { StandardHeader } from '../atoms/StandardHeader';
 import { Form } from '../organisms/Form';
-import { FormField } from '../mols/FormField';
+import { FormField } from '../molecules/FormField';
 import Button from '../atoms/Button';
 
 export function FormCard({

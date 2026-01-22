@@ -4,14 +4,14 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './contexts/auth';
 // For routing:
-import Dashboard from './app/pages/dashboard/Dashboard.jsx';
+import Dashboard from './app/pages/Dashboard/Dashboard';
 import Login from './app/pages/Login/Login';
-import NotFound from './app/pages/NotFound/NotFound.jsx';
-import CourseDetails from './app/pages/Course/CourseDetails/CourseDetails.jsx';
-import CourseEdit from './app/pages/Course/CourseEdit/CourseEdit.jsx';
-import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails.jsx';
-import LessonEdit from './app/pages/Course/Lessons/LessonEdit/LessonEdit.jsx';
-import ProtectedRoutes, { RerouteLogin } from './utils/ProtectedRoutes.jsx';
+import NotFound from './app/pages/NotFound/NotFound';
+import CourseDetails from './app/pages/Course/CourseDetails/CourseDetails';
+import CourseEdit from './app/pages/Course/CourseEdit/CourseEdit';
+import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails';
+import LessonEdit from './app/pages/Course/Lessons/LessonEdit/LessonEdit';
+import ProtectedRoutes, { RerouteLogin } from './utils/ProtectedRoutes';
 //
 
 
