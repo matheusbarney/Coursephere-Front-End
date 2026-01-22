@@ -17,7 +17,7 @@ export function Form({
   children,
 }: FormProps) {
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>   
+        <form className="w-full" onSubmit={handleSubmit(onSubmit)}>   
             {children}
             {/*ex: <FormField   
                         register={register}

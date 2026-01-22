@@ -12,7 +12,7 @@ export function FormCard({
   register,
   isSubmitting
 }) {
-  return <div className="flex-col place-items-center rounded-3xl bg-white px-10 py-15 shadow-xl dark:bg-white/10">
+  return <div className="w-128 h-156 flex-col place-items-center rounded-3xl bg-white px-10 py-15 shadow-xl dark:bg-white/10">
 
         <StandardHeader text="Login" />
 
