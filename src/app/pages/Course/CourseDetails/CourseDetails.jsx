@@ -1,25 +1,26 @@
 
 import{ use, useEffect, useState} from 'react';
 import{ useParams } from 'react-router-dom';
+import { courseService } from '../../../../services/courseService'
 
 function CourseDetails() {
   const { courseId } = useParams();
   //
-  const [courses, setCourse] = useState(null);
+  const [course, setCourse] = useState(null);
 
 
   useEffect(() => {
-    fetch('http://localhost:8000/courses')
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        setCourse(data);
-      })
+    const loadCourses = async () => {
+        try {
+          const data = await courseService.getById(courseId);
+          setCourse(data);
+        } catch (error) {
+          console.error('Error loading', error);
+        }
+      };
+      loadCourses();
   }, []);
-
-  const course = courses?.find(course => course.id === courseId);
-
+  
   return (
     <>
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-emerald-200 to-cyan-400 dark:bg-cyan-950">

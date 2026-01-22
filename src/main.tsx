@@ -1,20 +1,19 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { AuthProvider } from './contexts/auth';
+// For routing:
 import Dashboard from './app/pages/dashboard/Dashboard.jsx';
 import Login from './app/pages/Login/Login';
-//
 import NotFound from './app/pages/NotFound/NotFound.jsx';
-//
 import CourseDetails from './app/pages/Course/CourseDetails/CourseDetails.jsx';
 import CourseEdit from './app/pages/Course/CourseEdit/CourseEdit.jsx';
 import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails.jsx';
 import LessonEdit from './app/pages/Course/Lessons/LessonEdit/LessonEdit.jsx';
-//
 import ProtectedRoutes, { RerouteLogin } from './utils/ProtectedRoutes.jsx';
 //
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { AuthProvider } from './contexts/auth';
+
 
 const router = createBrowserRouter([
   // Login 
