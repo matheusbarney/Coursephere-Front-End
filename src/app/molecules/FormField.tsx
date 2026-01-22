@@ -29,7 +29,7 @@ export function FormField({
         placeholder={placeholder} 
       />
       {errors?.[name] && (
-        <div className="text-red-500">
+        <div className="text-red-500 text-x2">
           {errors[name]?.message as string}
         </div>
       )}
