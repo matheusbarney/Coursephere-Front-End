@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import Dashboard from './app/pages/dashboard/Dashboard.jsx';
-import Login from './app/pages/Login/Login.jsx';
+import Login from './app/pages/Login/Login';
 //
 import NotFound from './app/pages/NotFound/NotFound.jsx';
 //
@@ -17,7 +17,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './contexts/auth';
 
 const router = createBrowserRouter([
-
   // Login 
   // Reroute if already logged in
   {element: <RerouteLogin />, children: [
