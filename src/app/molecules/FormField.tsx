@@ -8,7 +8,7 @@ interface FormFieldProps {
   name: string;
   label: string;
   placeholder?: string;
-  type?: "text" | "password" | "checkbox";
+  type?: "text" | "password" | "checkbox" | "date";
 }
 
 export function FormField({

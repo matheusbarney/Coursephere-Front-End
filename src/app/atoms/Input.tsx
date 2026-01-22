@@ -2,7 +2,7 @@ import React from "react";
 
 interface InputProps {
     name?: string;
-    type?: "text" | "password" | "checkbox";
+    type?: "text" | "password" | "checkbox" | "date";
     placeholder?: string;
     register;
 }

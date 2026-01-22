@@ -16,7 +16,7 @@ function CourseDetails() {
           const data = await courseService.getById(courseId);
           setCourse(data);
         } catch (error) {
-          console.error('Error loading', error);
+          console.error('Error loading course', error);
         }
       };
       loadCourses();
