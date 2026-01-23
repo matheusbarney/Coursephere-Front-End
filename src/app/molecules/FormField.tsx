@@ -1,4 +1,3 @@
-import React from "react";
 import Input from '../atoms/Input';
 import { UseFormRegister, FieldErrors } from 'react-hook-form';
 
@@ -20,8 +19,8 @@ export function FormField({
   type = "text"
 }: FormFieldProps) {
   return (
-    <div className="w-full py-5">
-      <p className="pb-2 text-xl text-gray-800">{label}</p>
+    <div className="w-full py-4">
+      <p className="pb-1 text-xl text-gray-800">{label}</p>
       <Input 
         register={register} 
         name={name} 

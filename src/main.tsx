@@ -8,9 +8,9 @@ import Dashboard from './app/pages/Dashboard/Dashboard';
 import Login from './app/pages/Login/Login';
 import NotFound from './app/pages/NotFound/NotFound';
 import CourseDetails from './app/pages/Course/CourseDetails/CourseDetails';
-import CourseEdit from './app/pages/Course/CourseEdit/CourseEdit';
+import CourseEdit from './app/pages/Course/CourseManage/CourseManage';
 import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails';
-import LessonEdit from './app/pages/Course/Lessons/LessonEdit/LessonEdit';
+import LessonEdit from './app/pages/Course/Lessons/LessonManage/LessonEdit';
 import ProtectedRoutes, { RerouteLogin } from './utils/ProtectedRoutes';
 //
 
@@ -31,12 +31,12 @@ const router = createBrowserRouter([
           { index: true, element: <CourseDetails />},
           { path: "course-details", element: <CourseDetails />}
       ]},
-      {path: "/course/:courseId/edit", element: <CourseEdit />},
+      {path: "/course/:courseId/manage", element: <CourseEdit />},
       {path: "/course/:courseId/lesson/:lessonId", children: [
         { index: true, element: <LessonDetails /> },
         { path: "lesson-details", element: <LessonDetails /> }
       ]},
-      {path: "/course/:courseId/lesson/:lessonId/edit", element: <LessonEdit />},
+      {path: "/course/:courseId/lesson/:lessonId/manage", element: <LessonEdit />},
   ]},
 
 
