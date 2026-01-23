@@ -42,10 +42,10 @@ export function EditCourseMain()
         try {
             const course = await courseService.getById(courseId);
             reset({
-            name: course.name,
-            description: course.description,
-            start_date: course.start_date,
-            end_date: course.end_date
+              name: course.name,
+              description: course.description,
+              start_date: course.start_date,
+              end_date: course.end_date
             });
         } catch (error) {
             setError("root", { message: 'Failed to load course.',});

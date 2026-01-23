@@ -1,7 +1,7 @@
 
 interface InputProps {
     name?: string;
-    type?: "text" | "password" | "checkbox" | "date";
+    type?: "text" | "password" | "checkbox" | "date" | "hidden";
     placeholder?: string;
     register;
 }

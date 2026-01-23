@@ -3,6 +3,7 @@ import Button from '../atoms/Button';
 import { CourseCard } from '../components/CourseCard';
 import{ useParams, useNavigate } from 'react-router-dom';
 
+
 export function CourseTemplate({course}) {
   const { courseId } = useParams();
   const navigate = useNavigate();
