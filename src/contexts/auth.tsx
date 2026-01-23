@@ -6,12 +6,16 @@ interface User {
     id: number;
     email: string;
     password: string;
+    courses_instructing: number[];
+    courses_owned: number[];
+    lessons_created: number[];
 }
 
 
 interface AuthContextType {
     user: User | null;
     Login: (email: string, password: string) => Promise<User>;
+    Logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
@@ -47,8 +51,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
     }
 
+    async function Logout(): Promise<void> {
+        setUser(null);
+        localStorage.removeItem('user');
+        console.log('User logged out');
+    }
+
     return (
-        <AuthContext.Provider value={{ user, Login }}>
+        <AuthContext.Provider value={{ user, Login, Logout }}>
             {children}
         </AuthContext.Provider>
     );
