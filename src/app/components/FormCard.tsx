@@ -2,7 +2,7 @@ import React from "react";
 
 import { StandardHeader } from '../atoms/StandardHeader';
 import { Form } from '../organisms/Form';
-import { FormField } from '../mols/FormField';
+import { FormField } from '../molecules/FormField';
 import Button from '../atoms/Button';
 
 export function FormCard({
@@ -20,7 +20,7 @@ export function FormCard({
           
           <FormField register={register} errors={errors} name="email" label="Email:" placeholder="Enter email" />
           <FormField register={register} errors={errors} name="password" label="Password:" placeholder="Enter password" />
-          <div className="flex justify-center pt-8 pb-12">
+          <div className="flex justify-center pt-8 pb-4">
             <Button type="submit" mainText="Login to CourseSphere" showText={true} isSubmitting={isSubmitting} />
           </div>
 

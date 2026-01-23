@@ -27,9 +27,9 @@ export function Form({
                         placeholder="Enter email"
                       /> */} 
 
-            {/* Erro raiz no final do formulário */}
+            {/* Root error at end of form */}
             {errors?.root && (
-            <div className='text-red-500 text-center mt-4'>
+            <div className='text-red-500 text-xl italic text-center'>
             {errors.root.message as string}
         </div>
       )}

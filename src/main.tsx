@@ -1,20 +1,20 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Dashboard from './app/pages/dashboard/Dashboard.jsx';
-import Login from './app/pages/Login/Login';
-//
-import NotFound from './app/pages/NotFound/NotFound.jsx';
-//
-import CourseDetails from './app/pages/Course/CourseDetails/CourseDetails.jsx';
-import CourseEdit from './app/pages/Course/CourseEdit/CourseEdit.jsx';
-import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails.jsx';
-import LessonEdit from './app/pages/Course/Lessons/LessonEdit/LessonEdit.jsx';
-//
-import ProtectedRoutes, { RerouteLogin } from './utils/ProtectedRoutes.jsx';
-//
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './contexts/auth';
+// For routing:
+import Dashboard from './app/pages/Dashboard/Dashboard';
+import Login from './app/pages/Login/Login';
+import NotFound from './app/pages/NotFound/NotFound';
+import CourseDetails from './app/pages/Course/CourseDetails/CourseDetails';
+import CourseManage from './app/pages/Course/CourseManage/CourseManage';
+import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails';
+import LessonManage from './app/pages/Course/Lessons/LessonManage/LessonManage';
+import ProtectedRoutes, { RerouteLogin } from './utils/ProtectedRoutes';
+//
+
+ //localStorage.clear();
 
 const router = createBrowserRouter([
   // Login 
@@ -31,12 +31,12 @@ const router = createBrowserRouter([
           { index: true, element: <CourseDetails />},
           { path: "course-details", element: <CourseDetails />}
       ]},
-      {path: "/course/:courseId/edit", element: <CourseEdit />},
+      {path: "/course/:courseId/manage", element: <CourseManage />},
       {path: "/course/:courseId/lesson/:lessonId", children: [
         { index: true, element: <LessonDetails /> },
         { path: "lesson-details", element: <LessonDetails /> }
       ]},
-      {path: "/course/:courseId/lesson/:lessonId/edit", element: <LessonEdit />},
+      {path: "/course/:courseId/lesson/:lessonId/manage", element: <LessonManage />},
   ]},
 
 

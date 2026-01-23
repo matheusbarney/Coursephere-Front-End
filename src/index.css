@@ -1,5 +1,18 @@
 @import "tailwindcss";
+@import 'react-toastify/dist/ReactToastify.css';
 
 ::selection {
 	background: rgb(177, 236, 211);
+}
+
+a {
+	color: #14b8a6
+}
+
+a:hover {
+	color: #5eead4
+}
+
+a:visited {
+	color: #134e4a
 }

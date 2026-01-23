@@ -1,6 +1,7 @@
 import { LoginTemplate } from '../../templates/LoginTemplate';
-
 //
+import { useContext } from 'react';
+import AuthContext from '../../../contexts/auth';
 import {SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,6 +14,7 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 function Login() {
+  const { Login } = useContext(AuthContext);
 
   const { 
     register, handleSubmit, setError, formState: { errors, isSubmitting } 
@@ -22,10 +24,10 @@ function Login() {
   
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log(data);
+      await Login(data.email, data.password);
+      console.log(Login);
     } catch (error) {
-      setError("root", { message: "Error connecting to server",});
+      setError("root", { message: 'Invalid email or password',});
     }
   };
 
