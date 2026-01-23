@@ -1,4 +1,4 @@
-import { CourseEditTemplate } from '../../../templates/CourseEditTemplate';
+import { CourseEditTemplate } from '../../../templates/CourseManageTemplate';
 function CourseManage() {
 
   return (

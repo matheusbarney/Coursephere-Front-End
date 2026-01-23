@@ -19,7 +19,7 @@ export function FormCard({
         <Form handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors}>
           
           <FormField register={register} errors={errors} name="email" label="Email:" placeholder="Enter email" />
-          <FormField register={register} errors={errors} name="password" label="Password:" placeholder="Enter password" />
+          <FormField register={register} errors={errors} name="password" type="password" label="Password:" placeholder="Enter password" />
           <div className="flex justify-center pt-8 pb-4">
             <Button type="submit" mainText="Login to CourseSphere" showText={true} isSubmitting={isSubmitting} />
           </div>

@@ -7,11 +7,12 @@ import { AuthProvider } from './contexts/auth';
 import Dashboard from './app/pages/Dashboard/Dashboard';
 import Login from './app/pages/Login/Login';
 import NotFound from './app/pages/NotFound/NotFound';
+import AccessDenied from './app/pages/AccessDenied/AccessDenied';
 import CourseDetails from './app/pages/Course/CourseDetails/CourseDetails';
 import CourseManage from './app/pages/Course/CourseManage/CourseManage';
 import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails';
 import LessonManage from './app/pages/Course/Lessons/LessonManage/LessonManage';
-import ProtectedRoutes, { RerouteLogin } from './utils/ProtectedRoutes';
+import ProtectedRoutes, { RerouteLogin, RerouteCourseDenied, RerouteLessonDenied, RerouteInstructorDenied } from './utils/ProtectedRoutes';
 //
 
  //localStorage.clear();
@@ -31,19 +32,29 @@ const router = createBrowserRouter([
           { index: true, element: <CourseDetails />},
           { path: "course-details", element: <CourseDetails />}
       ]},
-      {path: "/course/:courseId/manage", element: <CourseManage />},
+
+      {path: "/course/new", element: <CourseManage />}, // New courses page 
+      {element: <RerouteCourseDenied />, children: [
+        {path: "/course/:courseId/edit", element: <CourseManage />}, // Same end-page but for existing course editing
+      ]},
       {path: "/course/:courseId/lesson/:lessonId", children: [
         { index: true, element: <LessonDetails /> },
         { path: "lesson-details", element: <LessonDetails /> }
       ]},
-      {path: "/course/:courseId/lesson/:lessonId/manage", element: <LessonManage />},
+      {element: <RerouteInstructorDenied />, children: [
+        {path: "/course/:courseId/lesson/new", element: <LessonManage />}, // New lessons page 
+      ]},
+      {element: <RerouteLessonDenied />, children: [
+        {path: "/course/:courseId/lesson/:lessonId/edit", element: <LessonManage />}, // Same end-page but for existing page editing
+      ]},
   ]},
 
 
   // Page Not Found 
   {path: "*", element: <NotFound />},
   
-  // Add Access Denied route in the future
+  // Access Denied
+  {path: "/denied", element: <AccessDenied />},
 ]);
 
 createRoot(document.getElementById('root')).render(

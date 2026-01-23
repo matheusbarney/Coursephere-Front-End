@@ -1,9 +1,9 @@
 
-import { EditLessonMain } from '../components/EditLessonMain';
+import { EditCourseMain } from '../components/ManageCourseMain';
 
-export function LessonEditTemplate({}) {
+export function CourseEditTemplate({}) {
   return <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-emerald-200 to-cyan-400 dark:bg-cyan-950">
-        <EditLessonMain />
+        <EditCourseMain />
       </div>;
 }
   
