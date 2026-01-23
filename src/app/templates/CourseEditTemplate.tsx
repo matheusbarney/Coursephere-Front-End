@@ -1,4 +1,4 @@
-import React from "react";
+
 import { EditCourseMain } from '../components/EditCourseMain';
 
 export function CourseEditTemplate({}) {

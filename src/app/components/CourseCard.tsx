@@ -1,10 +1,9 @@
-import React from "react";
 import{ useEffect, useState} from 'react';
 import { CourseList } from '../atoms/CourseList';
 import { StandardHeader } from '../atoms/StandardHeader';
 import { LoadingText } from '../atoms/LoadingText';
 import { lessonService } from '../../services/lessonService'
-import { Link } from 'react-router-dom';
+
 
 export function CourseCard({
   course

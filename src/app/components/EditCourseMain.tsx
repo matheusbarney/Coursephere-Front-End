@@ -2,8 +2,6 @@ import { Form } from '../organisms/Form';
 import { FormField } from '../molecules/FormField';
 import Button from '../atoms/Button';
 
-import React from "react";
-
 import{ useParams, useNavigate } from 'react-router-dom';
 import {SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect } from 'react';

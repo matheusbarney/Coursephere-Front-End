@@ -9,7 +9,6 @@ const ProtectedRoutes = () => {
 
 export const RerouteLogin = () => {
     const { user } = useContext(AuthContext);
-    console.log(user);
     return user ? <Navigate to="/" /> : <Outlet />;
 }
 
