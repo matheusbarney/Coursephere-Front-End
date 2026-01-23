@@ -1,5 +1,5 @@
 import { CourseEditTemplate } from '../../../templates/CourseEditTemplate';
-function CourseEdit() {
+function CourseManage() {
 
   return (
     <>
@@ -8,4 +8,4 @@ function CourseEdit() {
   );
 };
 
-export default CourseEdit
+export default CourseManage

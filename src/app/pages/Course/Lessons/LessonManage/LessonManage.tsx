@@ -1,4 +1,4 @@
-function LessonEdit() {
+function LessonManage() {
   return (
     <>
 
@@ -12,4 +12,4 @@ function LessonEdit() {
   )
 }
 
-export default LessonEdit
+export default LessonManage
