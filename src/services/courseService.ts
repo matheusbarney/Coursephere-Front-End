@@ -4,8 +4,8 @@ interface Course {
     id: string | number;
     name: string;
     description: string;
-    start_date: Date;
-    end_date: Date;
+    start_date: string;
+    end_date: string;
     creator_id: string | number;
     instructors: string[];
 }

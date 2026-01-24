@@ -1,9 +1,9 @@
+import { SearchComponent } from '../components/SearchComponent';
 import{ useEffect, useState} from 'react';
 import { CourseList } from '../atoms/CourseList';
 import { StandardHeader } from '../atoms/StandardHeader';
 import { LoadingText } from '../atoms/LoadingText';
 import { lessonService } from '../../services/lessonService'
-import { Link } from 'react-router-dom';
 
 export function CourseCard({course}) {
 
@@ -26,23 +26,7 @@ export function CourseCard({course}) {
         <StandardHeader text={`Course Details`} />
         <br></br>
         {course ? <CourseList course={course} /> : <LoadingText     />}
-        {lessons ? 
-        lessons.length > 0 ? 
-            <ul>    
-                { lessons.map((c) => <li key={c.id}>
-                    <div className="py-4">
-                        <Link to={`/course/${course.id}/lesson/${c.id}`}>
-                            <p className="font-bold">{c.title}</p>
-                        </Link>
-                        <p>{c.description}</p>
-                    </div>
-                </li>) }
-            </ul>
-            : 
-            <p>No Courses Available.</p>
-        :
-        <LoadingText     />
-        }
+        <SearchComponent   course={course} lessons={lessons}  />
       </div>;
 }
   

@@ -27,7 +27,7 @@
       "start_date": "2026-01-19",
       "end_date": "2026-04-19",
       "creator_id": "1",
-      "instructors": ["2"]
+      "instructors": ["2", "3"]
     },
     {
       "id": "2",

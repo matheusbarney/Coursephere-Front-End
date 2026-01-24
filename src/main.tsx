@@ -10,6 +10,7 @@ import NotFound from './app/pages/NotFound/NotFound';
 import AccessDenied from './app/pages/AccessDenied/AccessDenied';
 import CourseDetails from './app/pages/Course/CourseDetails/CourseDetails';
 import CourseManage from './app/pages/Course/CourseManage/CourseManage';
+import ManageInstructors from './app/pages/Course/ManageInstructors/ManageInstructors';
 import LessonDetails from './app/pages/Course/Lessons/LessonDetails/LessonDetails';
 import LessonManage from './app/pages/Course/Lessons/LessonManage/LessonManage';
 import ProtectedRoutes, { RerouteLogin, RerouteCourseDenied, RerouteLessonDenied, RerouteInstructorDenied } from './utils/ProtectedRoutes';
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       {path: "/course/new", element: <CourseManage />}, // New courses page 
       {element: <RerouteCourseDenied />, children: [
         {path: "/course/:courseId/edit", element: <CourseManage />}, // Same end-page but for existing course editing
+        {path: "/course/:courseId/edit/instructors", element: <ManageInstructors />},
       ]},
       {path: "/course/:courseId/lesson/:lessonId", children: [
         { index: true, element: <LessonDetails /> },

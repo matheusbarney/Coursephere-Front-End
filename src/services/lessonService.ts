@@ -6,7 +6,7 @@ interface Lesson {
     creator_id: string | number;
     title: string;
     status: "draft" | "published" | "archived";
-    publish_date: Date;
+    publish_date: Date | string;
     video_url: string;
 }
 
