@@ -10,9 +10,7 @@ export function CourseCard({ course }) {
 
     const renderContent = () => {
         if (!course || loading) return <LoadingText />;
-        
         if (error) return <p className="text-red-500">Error loading lessons.</p>;
-        
         return (
             <>
                 <br />

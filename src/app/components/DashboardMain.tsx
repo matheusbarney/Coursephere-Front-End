@@ -1,9 +1,9 @@
+import { DashCard } from '../organisms/DashCard';
 
 import { LoadingText } from '../atoms/LoadingText';
 import { StandardHeader } from '../atoms/StandardHeader';
 //
 import{ useMemo } from 'react';
-import { Link } from 'react-router-dom';
 //
 import { useAuth } from '../../hooks/useAuth'
 import { useCourses } from '../../hooks/useCourses';
@@ -18,6 +18,7 @@ export function DashboardMain({}) {
         return courses.filter(c => canManageCourse(c.id) || isInstructor(c.id));
     }, [courses, canManageCourse, isInstructor]);
 
+
     const renderContent = () => {
         if (loading) return <LoadingText />;
         if (error) return <p className="text-red-500">Error loading lessons.</p>;
@@ -27,12 +28,7 @@ export function DashboardMain({}) {
                 <ul>
                     {myCourses.map((c) => (
                         <li key={c.id}>
-                            <div className="py-4">
-                                <Link to={`/course/${c.id}/course-details`}>
-                                    <p className="font-bold">{c.name}</p>
-                                </Link>
-                                <p>{c.description}</p>
-                            </div>
+                            <DashCard   course={c}  />
                         </li>
                     ))}
                 </ul>

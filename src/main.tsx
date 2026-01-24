@@ -19,6 +19,10 @@ import ProtectedRoutes, { RerouteLogin, RerouteCourseDenied, RerouteLessonDenied
  //localStorage.clear();
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    errorElement: <NotFound />,
+  },
   // Login 
   // Reroute if already logged in
   {element: <RerouteLogin />, children: [
