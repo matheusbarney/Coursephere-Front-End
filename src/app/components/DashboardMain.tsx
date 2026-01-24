@@ -2,51 +2,52 @@
 import { LoadingText } from '../atoms/LoadingText';
 import { StandardHeader } from '../atoms/StandardHeader';
 //
-import{ useEffect, useState} from 'react';
-import { courseService } from '../../services/courseService'
+import{ useMemo } from 'react';
 import { Link } from 'react-router-dom';
+//
 import { useAuth } from '../../hooks/useAuth'
+import { useCourses } from '../../hooks/useCourses';
 
 export function DashboardMain({}) {
 
-    const [courses, setCourses] = useState(null);
-    const { user } = useAuth();
+    const { canManageCourse, isInstructor } = useAuth();
+    const { courses, loading, error } = useCourses();
 
-    useEffect(() => {
-        const loadCoursesData = async () => {
-            try {
-                // const data = await courseService.getAll();
-                const data = await courseService.getByUser(user.id);
-                setCourses(data);
+   const myCourses = useMemo(() => {
+        if (!courses) return [];
+        return courses.filter(c => canManageCourse(c.id) || isInstructor(c.id));
+    }, [courses, canManageCourse, isInstructor]);
 
-            } catch (error) {
-                console.error('Error loading', error);
-            }
-        };
-        loadCoursesData();
-    }, []);
+    const renderContent = () => {
+        if (loading) return <LoadingText />;
+        if (error) return <p className="text-red-500">Error loading lessons.</p>;
+        return (
+            <>
+            {myCourses.length > 0 ? (
+                <ul>
+                    {myCourses.map((c) => (
+                        <li key={c.id}>
+                            <div className="py-4">
+                                <Link to={`/course/${c.id}/course-details`}>
+                                    <p className="font-bold">{c.name}</p>
+                                </Link>
+                                <p>{c.description}</p>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No Courses Available.</p>
+            )}
+            </>
+        );
+    };
 
-
-
-return <div className="flex-col place-items-center rounded-3xl bg-white px-10 py-15 shadow-xl dark:bg-white/10">
-        <StandardHeader text={`My Dashboard`} />
-        {courses ? 
-        courses.length > 0 ? 
-            <ul>    
-                { courses.map((c) => <li key={c.id}>
-                    <div className="py-4">
-                        <Link to={`/course/${c.id}/course-details`}>
-                            <p className="font-bold">{c.name}</p>
-                        </Link>
-                        <p>{c.description}</p>
-                    </div>
-                </li>) }
-            </ul>
-            : 
-            <p>No Courses Available.</p>
-        :
-        <LoadingText     />
-        }
-        </div>;
+    return (
+        <div className="flex-col place-items-center rounded-3xl bg-white px-10 py-15 shadow-xl dark:bg-white/10">
+            <StandardHeader text="My Dashboard" />
+            {renderContent()}
+        </div>
+    );
 }
   
