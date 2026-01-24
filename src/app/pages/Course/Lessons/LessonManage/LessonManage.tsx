@@ -1,4 +1,4 @@
-import { LessonEditTemplate } from '../../../../templates/LessonEditTemplate';
+import { LessonEditTemplate } from '../../../../templates/LessonManageTemplate';
 function LessonManage() {
 
   return (

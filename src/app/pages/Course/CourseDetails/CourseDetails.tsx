@@ -11,7 +11,7 @@ function CourseDetails() {
 
 
   useEffect(() => {
-    const loadCourses = async () => {
+    const loadCourse = async () => {
         try {
           const data = await courseService.getById(courseId);
           setCourse(data);
@@ -19,7 +19,7 @@ function CourseDetails() {
           console.error('Error loading course', error);
         }
       };
-      loadCourses();
+      loadCourse();
   }, []);
   
   return (

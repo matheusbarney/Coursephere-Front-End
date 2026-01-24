@@ -5,15 +5,18 @@ import { StandardHeader } from '../atoms/StandardHeader';
 import{ useEffect, useState} from 'react';
 import { courseService } from '../../services/courseService'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth'
 
 export function DashboardMain({}) {
 
     const [courses, setCourses] = useState(null);
+    const { user } = useAuth();
 
     useEffect(() => {
         const loadCoursesData = async () => {
             try {
-                const data = await courseService.getAll();
+                // const data = await courseService.getAll();
+                const data = await courseService.getByUser(user.id);
                 setCourses(data);
 
             } catch (error) {

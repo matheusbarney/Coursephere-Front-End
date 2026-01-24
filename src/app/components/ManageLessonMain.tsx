@@ -1,9 +1,9 @@
 import { Form } from '../organisms/Form';
 import { FormField } from '../molecules/FormField';
+import { SelectField } from '../molecules/selectField';
 import Button from '../atoms/Button';
 
-import React from "react";
-
+import useAuth from '../../hooks/useAuth';
 import{ useParams, useNavigate } from 'react-router-dom';
 import {SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
@@ -26,7 +26,9 @@ export function EditLessonMain()
     const navigate = useNavigate();
     const { courseId } = useParams();
     const { lessonId } = useParams();
+    const isEditMode = Boolean(lessonId);
     const [creator_id, setCreator] = useState(null);
+    const { user, RefreshPermissions } = useAuth();
 
     const { 
         register, handleSubmit, setError, reset, formState: { errors, isSubmitting } 
@@ -35,6 +37,7 @@ export function EditLessonMain()
     });
 
     useEffect(() => {
+        if (isEditMode) {
             const loadLesson = async() => {
             try {
                 const lesson = await lessonService.getById(lessonId);
@@ -51,33 +54,62 @@ export function EditLessonMain()
             };
     
             loadLesson();
-        }, [lessonId, reset]);
+        }
+    }, [lessonId, reset]);
     
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
-        const response = await lessonService.editLesson(lessonId, {
-            ...data,
-            course_id: courseId,
-            creator_id: creator_id,
-        });
-        console.log("Updated!");
-        navigate(`/course/${courseId}/lesson/${lessonId}`);
+        if (isEditMode) {
+            const response = await lessonService.editLesson(lessonId, {
+                ...data,
+                course_id: courseId,
+                creator_id: creator_id,
+            });
+            console.log("Updated!");
+            navigate(`/course/${courseId}/lesson/${lessonId}`);
+        } 
+        else // Adding Mode 
+        {
+            const lessonData = {
+                ...data,
+                course_id: courseId,
+                creator_id: user.id,
+            };
+            const response = await lessonService.addLesson(lessonData)
+            RefreshPermissions();
+            console.log("Lesson added to database!", response);
+
+            navigate(`/course/${courseId}/lesson/${response.id}`);   
+        }
+
+
         } catch (error) {
         setError("root", { message: 'Invalid field pending.',});
         }
     };
     
   return <div className="flex-col w-200 h-screen place-items-center bg-white px-10 shadow-xl dark:bg-white/10">
-          <h1 className="text-gray-600-bold flex justify-center py-4 text-5xl">Edit Lesson</h1>
+          <h1 className="text-gray-600-bold flex justify-center py-4 text-5xl">{isEditMode ? 'Edit Lesson' : 'Add Lesson'}</h1>
 
           <Form handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors}>
             
             <FormField register={register} errors={errors} name="title" label="Title:" placeholder="Enter lesson title" />
-            <FormField register={register} errors={errors} name="status" label="Status:" placeholder="Enter lesson status" />
+            <SelectField
+                register={register}
+                errors={errors}
+                name="status"
+                label="Status"
+                placeholder="Please enter a lesson status"
+                options={[
+                    { value: "draft", label: "Draft" },
+                    { value: "published", label: "Published" },
+                    { value: "archived", label: "Archived" }
+                ]}
+            />
             <FormField register={register} errors={errors} name="publish_date" label="Publish Date:" placeholder="Enter publish date" type="date" />
             <FormField register={register} errors={errors} name="video_url" label="URL:" placeholder="Enter Video URL" />
             <div className="flex justify-center pt-8">
-              <Button type="submit" mainText="Edit" showText={true} isSubmitting={isSubmitting} />
+              <Button type="submit" mainText={isEditMode ? 'Edit' : 'Add'} showText={true} isSubmitting={isSubmitting} />
             </div>
 
           </Form>

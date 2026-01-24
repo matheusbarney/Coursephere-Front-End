@@ -1,5 +1,5 @@
-import React from "react";
-import { EditCourseMain } from '../components/EditCourseMain';
+
+import { EditCourseMain } from '../components/ManageCourseMain';
 
 export function CourseEditTemplate({}) {
   return <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-emerald-200 to-cyan-400 dark:bg-cyan-950">

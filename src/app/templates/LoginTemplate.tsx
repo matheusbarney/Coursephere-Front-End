@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FormCard } from '../components/FormCard';
 
 export function LoginTemplate({handleSubmit, onSubmit, errors, register, isSubmitting}) {

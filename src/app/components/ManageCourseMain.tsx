@@ -2,8 +2,7 @@ import { Form } from '../organisms/Form';
 import { FormField } from '../molecules/FormField';
 import Button from '../atoms/Button';
 
-import React from "react";
-
+import useAuth from '../../hooks/useAuth';
 import{ useParams, useNavigate } from 'react-router-dom';
 import {SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
@@ -29,7 +28,9 @@ type FormFields = z.infer<typeof schema>;
 export function EditCourseMain()
 {
     const { courseId } = useParams();
+    const isEditMode = Boolean(courseId);
     const navigate = useNavigate();
+    const { user, RefreshPermissions } = useAuth();
 
     const { 
         register, handleSubmit, setError, reset, formState: { errors, isSubmitting } 
@@ -38,6 +39,7 @@ export function EditCourseMain()
     });
     
     useEffect(() => {
+      if (isEditMode) {
         const loadCourse = async() => {
         try {
             const course = await courseService.getById(courseId);
@@ -51,30 +53,46 @@ export function EditCourseMain()
             setError("root", { message: 'Failed to load course.',});
         };
         };
-
         loadCourse();
+      }
+
     }, [courseId, reset]);
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
-        const response = await courseService.editCourse(courseId, data)
-        console.log("Updated!");
-        navigate(`/course/${courseId}`);
+          if (isEditMode) { 
+            const response = await courseService.editCourse(courseId, data)
+            console.log("Updated!");
+            navigate(`/course/${courseId}`);
+          } 
+          else 
+          { // Adding Mode
+            const courseData = {
+              ...data,
+              creator_id: user.id,
+              instructors: []
+            };
+            const response = await courseService.addCourse(courseData)
+            console.log("Course added to database!", response);
+            RefreshPermissions();
+            navigate(`/course/${response.id}`);
+          }
+
         } catch (error) {
         setError("root", { message: 'Invalid field pending.',});
         }
     };
   return <div className="flex-col w-200 h-screen place-items-center bg-white px-10 shadow-xl dark:bg-white/10">
-          <h1 className="text-gray-600-bold flex justify-center py-4 text-5xl">Edit Course</h1>
+          <h1 className="text-gray-600-bold flex justify-center py-4 text-5xl">{isEditMode ? 'Edit Course' : 'Add Course'}</h1>
 
           <Form handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors}>
             
-            <FormField register={register} errors={errors} name="name" label="Name:" placeholder="Enter new name" />
-            <FormField register={register} errors={errors} name="description" label="Description:" placeholder="Enter new desc." />
-            <FormField register={register} errors={errors} name="start_date" label="Start Date:" placeholder="Enter new start d" type="date" />
-            <FormField register={register} errors={errors} name="end_date" label="End Date:" placeholder="Enter new end d" type="date" />
+            <FormField register={register} errors={errors} name="name" label="Name:" placeholder="Enter name" />
+            <FormField register={register} errors={errors} name="description" label="Description:" placeholder="Enter description" />
+            <FormField register={register} errors={errors} name="start_date" label="Start Date:" placeholder="Enter start date" type="date" />
+            <FormField register={register} errors={errors} name="end_date" label="End Date:" placeholder="Enter end date" type="date" />
             <div className="flex justify-center pt-8">
-              <Button type="submit" mainText="Edit" showText={true} isSubmitting={isSubmitting} />
+              <Button type="submit" mainText={isEditMode ? 'Edit' : 'Add'} showText={true} isSubmitting={isSubmitting} />
             </div>
 
           </Form>

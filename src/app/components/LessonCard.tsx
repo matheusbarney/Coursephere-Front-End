@@ -1,4 +1,4 @@
-import React from "react";
+
 import { LessonList } from '../atoms/LessonList';
 import { StandardHeader } from '../atoms/StandardHeader';
 import { LoadingText } from '../atoms/LoadingText';
