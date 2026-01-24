@@ -16,19 +16,19 @@ export const RerouteCourseDenied = () => {
     const { courseId } = useParams();
     const { canManageCourse } = useAuth();
     
-    if(!canManageCourse(courseId)) return <Navigate to="/denied" />;
+    return !canManageCourse(courseId) ? <Navigate to="/denied" /> : <Outlet />;
 }
 export const RerouteLessonDenied = () => {
     const { lessonId } = useParams();
     const { canManageLesson } = useAuth();
     
-    if(!canManageLesson(lessonId)) return <Navigate to="/denied" />;
+    return !canManageLesson(lessonId) ? <Navigate to="/denied" /> : <Outlet />;
 }
 export const RerouteInstructorDenied = () => {
     const { courseId } = useParams();
     const { isInstructor } = useAuth();
     
-    if(!isInstructor(courseId)) return <Navigate to="/denied" />;
+    return !isInstructor(courseId) ? <Navigate to="/denied" /> : <Outlet />;
 }
 
 export default ProtectedRoutes
