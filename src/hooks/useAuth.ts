@@ -11,7 +11,7 @@ export const useAuth = () => {
   const { user, Login, Logout, RefreshPermissions } = context;
 
   // Permission check functions
-  const canManageCourse = (courseId: number): boolean => {
+  const canManageCourse = (courseId: number | string): boolean => {
     if (!user) return false;
     const id = typeof courseId === 'string' ? parseInt(courseId) : courseId;
     return user.courses_owned.includes(id);

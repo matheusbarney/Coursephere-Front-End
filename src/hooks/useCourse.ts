@@ -29,6 +29,21 @@ export const useCourse = ({courseId}: useCourseProps ) => {
         loadCourse();
     }, [courseId]);
 
+    const deleteCourse = async (courseId: number) => {
+        try {
+            setLoading(true);
+            setError(null);
+            await courseService.deleteById(courseId);
+            setCourse(null);
+        } catch (err) {
+            console.error('Error deleting course:', err);
+            setError(err);
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const addInstructor = async (userId: string | number) => {
         try {
             setLoading(true);

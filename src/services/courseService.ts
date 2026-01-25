@@ -27,7 +27,7 @@ export const courseService = {
     },
 
     deleteById: async (id) => {
-        const res = await api.delete<void>(`/courses/${id}`);
+        const res = await api.delete(`/courses/${id}`);
         return res.data;
     },
 

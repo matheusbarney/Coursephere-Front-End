@@ -29,6 +29,21 @@ export const useLesson = ({lessonId}: useLessonProps ) => {
         loadLesson();
     }, [lessonId]);
 
+    const deleteLesson = async (lessonId: number) => {
+        try {
+            setLoading(true);
+            setError(null);
+            await lessonService.deleteById(lessonId);
+            setLesson(null);
+        } catch (err) {
+            console.error('Error deleting lesson:', err);
+            setError(err);
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return { lesson, loading, error };
 };
 

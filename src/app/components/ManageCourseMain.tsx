@@ -33,7 +33,7 @@ export function EditCourseMain()
     const isEditMode = Boolean(courseId);
     const navigate = useNavigate();
     const { user, RefreshPermissions } = useAuth();
-    const { toastError } = useToast();
+    const { toastError, toastInfo } = useToast();
 
     const { 
         register, handleSubmit, setError, reset, formState: { errors, isSubmitting } 
@@ -85,6 +85,19 @@ export function EditCourseMain()
         setError("root", { message: 'Invalid field pending.',});
         }
     };
+
+    const handleDelete = async (courseId) => {
+      try {
+        await courseService.deleteById(courseId)
+        toastInfo("Course was removed from CourseSphere.");
+        navigate(`/`);
+      } catch (err) {
+        console.error('Error in Delete:', err);
+      }
+    }
+
+
+
   return <div className="flex-col w-200 h-screen place-items-center bg-white px-10 shadow-xl dark:bg-white/10">
           <h1 className="text-gray-600-bold flex justify-center py-4 text-5xl">{isEditMode ? 'Edit Course' : 'Add Course'}</h1>
 
@@ -94,8 +107,15 @@ export function EditCourseMain()
             <FormField register={register} errors={errors} name="description" label="Description:" placeholder="Enter description" />
             <FormField register={register} errors={errors} name="start_date" label="Start Date:" placeholder="Enter start date" type="date" />
             <FormField register={register} errors={errors} name="end_date" label="End Date:" placeholder="Enter end date" type="date" />
-            <div className="flex justify-center pt-8">
-              <Button type="submit" mainText={isEditMode ? 'Edit' : 'Add'} showText={true} isSubmitting={isSubmitting} />
+            <div className="flex justify-center gap-4">
+              <div className="flex justify-center pt-8">
+                <Button type="submit" mainText={isEditMode ? 'Edit' : 'Add'} showText={true} isSubmitting={isSubmitting} />
+              </div>
+              {isEditMode === true && (
+                <div className="flex justify-center pt-8">
+                  <Button type="button" mainText={'Delete'} showText={true} onClick={() => handleDelete(courseId)} />
+                </div>
+              )};
             </div>
 
           </Form>
