@@ -6,6 +6,8 @@ import {SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import useToast from '../../../hooks/useToast';
+
 const schema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
@@ -15,6 +17,7 @@ type FormFields = z.infer<typeof schema>;
 
 function Login() {
   const { Login } = useContext(AuthContext);
+  const { toastError, toastSuccess } = useToast();
 
   const { 
     register, handleSubmit, setError, formState: { errors, isSubmitting } 
@@ -26,8 +29,9 @@ function Login() {
     try {
       await Login(data.email, data.password);
       console.log(Login);
+      toastSuccess("Logged in with success!")
     } catch (error) {
-      setError("root", { message: 'Invalid email or password',});
+      toastError("Invalid email or password");
     }
   };
 

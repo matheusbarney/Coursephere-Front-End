@@ -12,6 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { lessonService } from '../../services/lessonService'
 import { compareAsc } from 'date-fns';
 
+import useToast from '../../hooks/useToast';
 
 const schema = z.object({
   title: z.string().min(3, "Title is required."),
@@ -35,6 +36,7 @@ export function EditLessonMain()
     const isEditMode = Boolean(lessonId);
     const [creator_id, setCreator] = useState(null);
     const { user, RefreshPermissions } = useAuth();
+    const { toastError } = useToast();
 
     const { 
         register, handleSubmit, setError, reset, formState: { errors, isSubmitting } 
@@ -55,7 +57,7 @@ export function EditLessonMain()
                     video_url: lesson.video_url,
                 });
             } catch (error) {
-                setError("root", { message: 'Failed to load lesson.',});
+                toastError("Failed to load lesson");
             };
             };
     

@@ -11,6 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { courseService } from '../../services/courseService'
 import { compareAsc } from 'date-fns'
 
+import useToast from '../../hooks/useToast';
+
 const schema = z.object({
   name: z.string().min(1, "Name is required."),
   description: z.string().min(1, "Description is required."),
@@ -31,6 +33,7 @@ export function EditCourseMain()
     const isEditMode = Boolean(courseId);
     const navigate = useNavigate();
     const { user, RefreshPermissions } = useAuth();
+    const { toastError } = useToast();
 
     const { 
         register, handleSubmit, setError, reset, formState: { errors, isSubmitting } 
@@ -50,7 +53,7 @@ export function EditCourseMain()
               end_date: course.end_date
             });
         } catch (error) {
-            setError("root", { message: 'Failed to load course.',});
+            toastError("Failed to load course");
         };
         };
         loadCourse();

@@ -4,18 +4,21 @@ import { useContext } from 'react';
 import AuthContext from '../../contexts/auth';
 import{ useNavigate, Link } from 'react-router-dom';
 
+import useToast from '../../hooks/useToast';
+
 export function DashboardTemplate({}) {
 
   const { Logout } = useContext(AuthContext);
+  const { toastError, toastInfo } = useToast();
   const navigate = useNavigate();
 
   async function handleLogout() {
     try {
       await Logout();
-      console.log("Successfully logged out");
+      toastError("Logged out of account.");
       navigate(`/login`);
     } catch (error) {
-      console.error("Logout failed:", error);
+      toastError("Failed to log out.");
     }
   }
 

@@ -7,11 +7,14 @@ import { useExternalUser } from '../../hooks/useExternalUser'
 import { courseService } from '../../services/courseService'
 import { userService } from '../../services/userService'
 
+import useToast from '../../hooks/useToast';
+
 export function InstructorManagePanel({}) {
 
     const { courseId } = useParams();
     const [ instructors, setInstructors ] = useState(null);
     const { user: exUsers, loading } = useExternalUser(3); // Load 3 users from external API.
+    const { toastError } = useToast();
     console.log(exUsers);
 
     useEffect(() => {
@@ -26,7 +29,7 @@ export function InstructorManagePanel({}) {
                     setInstructors( userData );
                 }
             } catch (error) {
-                console.error('Error loading', error);
+                toastError("Failed to load instructors");
                 setInstructors([]);
             }
         };

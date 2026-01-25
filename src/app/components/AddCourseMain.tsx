@@ -10,6 +10,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { courseService } from '../../services/courseService'
 import { compareAsc } from 'date-fns'
 
+import useToast from '../../hooks/useToast';
+
 const schema = z.object({
   name: z.string().min(1, "Name is required."),
   description: z.string().min(1, "Description is required."),
@@ -27,6 +29,7 @@ type FormFields = z.infer<typeof schema>;
 export function AddCourseMain()
 {
     const { courseId } = useParams();
+    const { toastError } = useToast();
     const navigate = useNavigate();
 
     const { 
@@ -46,7 +49,7 @@ export function AddCourseMain()
               end_date: course.end_date
             });
         } catch (error) {
-            setError("root", { message: 'Failed to load course.',});
+            toastError("Failed to load course");
         };
         };
 
@@ -59,7 +62,7 @@ export function AddCourseMain()
         console.log("Updated!");
         navigate(`/course/${courseId}`);
         } catch (error) {
-        setError("root", { message: 'Invalid field pending.',});
+          toastError("Invalid field pending");
         }
     };
   return <div className="flex-col w-200 h-screen place-items-center bg-white px-10 shadow-xl dark:bg-white/10">
