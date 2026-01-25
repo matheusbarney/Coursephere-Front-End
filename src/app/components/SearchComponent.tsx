@@ -1,14 +1,17 @@
 import { SearchItem } from '../molecules/SearchItem';
 import { SearchInput } from '../organisms/SearchInput';
 import { LoadingText } from '../atoms/LoadingText';
-import { useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 
 export function SearchComponent({
   course,
   lessons
 }) {
     const [searchParams, setSearchParams] = useSearchParams();
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 2;
 
     // Read from URL, otherwise defaults
     const searchQuery = searchParams.get('search') || '';
@@ -24,6 +27,7 @@ export function SearchComponent({
             }
             return prev;
         });
+        setCurrentPage(0); 
     };
     const setStatusFilter = (status: string) => {
         setSearchParams(prev => {
@@ -34,6 +38,7 @@ export function SearchComponent({
         }
         return prev;
         });
+        setCurrentPage(0); // Reset to first page on search/filter
     };
     
     // Filter lessons based on URL params
@@ -53,21 +58,59 @@ export function SearchComponent({
         });
     }, [lessons, statusFilter, searchQuery]);
     
-    return <div className="pt-9 bg-red-500">
+    // Pagination
+    const offset = currentPage * itemsPerPage;
+    const currentLessons = filteredLessons.slice(offset, offset + itemsPerPage);
+    const pageCount = Math.ceil(filteredLessons.length / itemsPerPage);
+
+    const handlePageClick = (event) => {
+        setCurrentPage(event.selected);
+    };
+
+    return <div className="pt-9">
             <SearchInput 
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 statusFilter={statusFilter}
                 setStatusFilter={setStatusFilter}
             />
-            <div className="bg-blue-500 flex justify-start flex-col">
-                {lessons ? filteredLessons.length > 0 ? <ul>    
-                        {filteredLessons.map(l => <li key={l.id}>
-                            <div className="bg-green-500 w-min">
-                                <SearchItem  course={course} lesson={l}   />
-                            </div>
-                        </li>)}
-                    </ul> : <p>No Courses Available.</p> : <LoadingText />}
+            <div className="flex justify-start flex-col">
+                {!lessons ? (
+                    <LoadingText />
+                ) : filteredLessons.length > 0 ? (
+                    <>
+                        <ul className='flex '>    
+                            {currentLessons.map(l => (
+                                <li key={l.id} className="">
+                                    <SearchItem course={course} lesson={l} />
+                                </li>
+                            ))}
+                        </ul>
+                        
+                        {pageCount > 1 && (
+                            <ReactPaginate
+                                breakLabel="..."
+                                nextLabel=">"
+                                onPageChange={handlePageClick}
+                                pageRangeDisplayed={5}
+                                pageCount={pageCount}
+                                previousLabel="<"
+                                renderOnZeroPageCount={null}
+                                containerClassName="flex gap-2 justify-center my-8"
+                                pageClassName="inline-block"
+                                pageLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
+                                activeClassName="bg-teal-200 text-white"
+                                activeLinkClassName="bg-teal-200 text-white hover:bg-gray-100"
+                                previousClassName="inline-block"
+                                nextClassName="inline-block"
+                                previousLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
+                                nextLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
+                            />
+                        )}
+                    </>
+                ) : (
+                    <p>No Courses Available.</p>
+                )}
             </div>
         </div>;
 }

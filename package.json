@@ -25,6 +25,7 @@
     "react-toastify": "^11.0.5",
     "tailwindcss": "^4.1.18",
     "toastify": "^2.0.1",
+    "use-debounce": "^10.1.0",
     "zod": "^4.3.5"
   },
   "devDependencies": {
