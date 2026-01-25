@@ -29,7 +29,7 @@ export const useCourse = ({courseId}: useCourseProps ) => {
         loadCourse();
     }, [courseId]);
 
-    return { course, loading, error };
+    
 };
 
 export default useCourse;

@@ -45,4 +45,5 @@ export default {
   post: api.post,
   put: api.put,
   delete: api.delete,
+  patch: api.patch
 };

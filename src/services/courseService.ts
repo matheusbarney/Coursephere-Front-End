@@ -41,4 +41,29 @@ export const courseService = {
         return response.data;
     },
 
+    addInstructor: async (id, user_id) => {
+        const course = await courseService.getById(id);
+        const updatedInstructors = course.instructors.includes(user_id)
+            ? course.instructors
+            : [...course.instructors, user_id];
+        
+        // Update the course with the new instructors array
+        const response = await api.patch<Course>(`/courses/${id}`, {
+            instructors: updatedInstructors
+        });
+        return response.data;
+    },
+
+    removeInstructor: async (id, user_id) => {
+    const course = await courseService.getById(id);
+    const updatedInstructors = course.instructors.filter(
+        instructorId => instructorId !== user_id
+    );
+    
+    // Update the course with the new instructors array
+    const response = await api.patch<Course>(`/courses/${id}`, {
+        instructors: updatedInstructors
+    });
+    return response.data;
+    },
 }

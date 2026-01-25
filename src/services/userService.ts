@@ -16,5 +16,12 @@ export const userService = {
     getById: async (id) => {
         const res = await api.get<User>(`/users/${id}`);
         return res.data;
-    }
+    },
+    
+    addUser: async (userData) => {
+        const response = await api.post<User>('/users', userData);
+        return response.data;
+    },
+
+
 }
