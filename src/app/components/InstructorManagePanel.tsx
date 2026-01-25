@@ -6,8 +6,8 @@ import { LoadingText } from '../atoms/LoadingText';
 import { useExternalUser } from '../../hooks/useExternalUser'
 import { courseService } from '../../services/courseService'
 import { userService } from '../../services/userService'
-
 import useToast from '../../hooks/useToast';
+
 
 export function InstructorManagePanel({}) {
 
@@ -38,10 +38,10 @@ export function InstructorManagePanel({}) {
     }, [courseId]);
 
 
-    return <div className="flex-col place-items-center rounded-3xl bg-white px-10 py-15 shadow-xl dark:bg-white/10">
+    return <div className="flex flex-col justify-center w-full lg:w-200 min-h-screen place-items-center bg-white px-4 sm:px-10 py-8 shadow-xl dark:bg-white/10 lg:mx-auto">
         <div>
         <StandardHeader text={`Current Instructors:`} />
-
+        <div className='text-red-400 text-center'>Click on name to remove instructor.</div>
             {instructors ? 
             instructors.length > 0 ? 
                 <ul>    
@@ -55,8 +55,9 @@ export function InstructorManagePanel({}) {
             <LoadingText     />
             }
         </div>
-        <div className="pt-3">
-            <StandardHeader text={`Suggested Instructors:`} />
+        <div className="pt-12 ">
+            <StandardHeader text={`New Instructors:`} />
+        <div className='text-green-400 text-center'>Click on name to add instructor.</div>
             {exUsers ? 
                 <ul className=" flex-col flex items-center justify-between">    
                     {Array.isArray(exUsers) && exUsers.map((c) => <li key={c.id} >

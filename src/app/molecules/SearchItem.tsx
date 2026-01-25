@@ -34,7 +34,7 @@ export function SearchItem({
                                 ) : (
                                     <p className="font-bold m-2 text-black-200">{lesson.title}</p>
                                 )}
-                                { canDeleteLesson(lesson.id) && (<p className="text-red-300 w-15 flex justify-center 
+                                { canDeleteLesson(course.id,lesson.id) && (<p className="text-red-300 w-15 flex justify-center 
                                 flex-col items-center text-xl bold border-2 rounded-xl m-1.5 hover:bg-red-100"
                                 onClick={() => handleDelete(lesson.id)}
                                 >X</p>)}

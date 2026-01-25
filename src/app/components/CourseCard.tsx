@@ -14,15 +14,23 @@ export function CourseCard({ course }) {
         if (error) return <p className="text-red-500">Error loading lessons.</p>;
         return (
             <>
-                <StandardHeader text={course.name} />
-                <div className="pt-4"><CourseList course={course} /></div>
+                <div className="pt-12"><StandardHeader text={course.name} /></div>
+                <div className="pt-8"><CourseList course={course} /></div>
                 <SearchComponent course={course} lessons={lessons} />
             </>
         );
     };
 
     return (
-        <div className="h-xl flex-col place-items-center rounded-3xl bg-white px-2 py-8 shadow-xl dark:bg-white/10">
+        <div className="border border-gray-400 bg-white
+                            rounded-xl  py-4 px-6
+                            mt-8  
+                            flex flex-col justify-between leading-normal 
+                            shadow-lg transition-all duration-200
+                            h-full lg:h-170 
+                            w-80 lg:w-4xl
+                            text-xs md:text-base lg:text-xl
+                            ">
             {renderContent()}
         </div>
     );

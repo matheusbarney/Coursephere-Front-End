@@ -70,7 +70,7 @@ export function SearchComponent({
         setCurrentPage(event.selected);
     };
 
-    return <div className="pt-9">
+    return <div className="pt-4 md:pt-9 bg-col">
             <SearchInput 
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
@@ -101,17 +101,17 @@ export function SearchComponent({
                             renderOnZeroPageCount={null}
                             containerClassName="flex gap-2 justify-center my-8"
                             pageClassName="inline-block"
-                            pageLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
+                            pageLinkClassName="px-3 py-2 border rounded hover:bg-gray-200"
                             activeClassName="bg-teal-200 text-white"
-                            activeLinkClassName="bg-teal-200 text-white hover:bg-gray-100"
+                            activeLinkClassName="bg-teal-200 text-white hover:bg-gray-200"
                             previousClassName="inline-block"
                             nextClassName="inline-block"
-                            previousLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
-                            nextLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
+                            previousLinkClassName="px-3 py-2 border rounded hover:bg-gray-200"
+                            nextLinkClassName="px-3 py-2 border rounded hover:bg-gray-200"
                         />
                     </>
                 ) : (
-                    <p>No Courses Available.</p>
+                    <center className="py-20 text-5xl">No Courses Available.</center>
                 )}
             </div>
         </div>;

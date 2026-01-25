@@ -96,7 +96,7 @@ export function EditLessonMain()
         }
     };
     
-  return <div className="flex-col w-200 h-screen place-items-center bg-white px-10 shadow-xl dark:bg-white/10">
+  return <div className="flex-col w-full lg:w-200 h-screen place-items-center bg-white px-10 shadow-xl dark:bg-white/10">
           <h1 className="text-gray-600-bold flex justify-center py-4 text-5xl">{isEditMode ? 'Edit Lesson' : 'Add Lesson'}</h1>
 
           <Form handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors}>

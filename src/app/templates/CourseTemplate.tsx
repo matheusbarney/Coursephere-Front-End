@@ -29,7 +29,7 @@ export function CourseTemplate() {
           <CourseCard course={course} />
 
           {canManageCourse(courseId) && (
-            <div className="pt-8 flex gap-10">
+            <div className="flex justify-center gap-1 md:gap-10 pt-4 h-min">
               <Button type="button" mainText="Edit Course" showText={true} onClick={navEditCourse}/>
               <Button type="button" mainText="Edit Instructors" showText={true} onClick={navEditInstructors}/>
             </div>
@@ -38,9 +38,9 @@ export function CourseTemplate() {
   };
 
   return <>
-      <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-emerald-200 to-cyan-400 dark:bg-cyan-950">
-      {renderContent()};
+      <div className="flex h-screen flex-col items-center justify-center bg-gradient-to-br from-emerald-200 to-cyan-400 dark:bg-cyan-950 overflow-auto">
+        {renderContent()};
       </div>
-    </>;
+    </>
 }
   
