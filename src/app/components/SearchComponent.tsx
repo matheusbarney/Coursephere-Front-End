@@ -4,6 +4,7 @@ import { LoadingText } from '../atoms/LoadingText';
 import { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import { useDebounce } from 'use-debounce';
 
 export function SearchComponent({
   course,
@@ -16,6 +17,8 @@ export function SearchComponent({
     // Read from URL, otherwise defaults
     const searchQuery = searchParams.get('search') || '';
     const statusFilter = searchParams.get('status') || 'All status';
+
+    const [debouncedSearchQuery] = useDebounce(searchQuery, 300);
 
     // Update URL params
     const setSearchQuery = (query: string) => {
@@ -51,12 +54,12 @@ export function SearchComponent({
             lesson.status?.toLowerCase() === statusFilter.toLowerCase();
         
         const matchesSearch = 
-            searchQuery === '' ||
-            lesson.title?.toLowerCase().includes(searchQuery.toLowerCase());
+            debouncedSearchQuery === '' ||
+            lesson.title?.toLowerCase().includes(debouncedSearchQuery.toLowerCase());
         
         return matchesStatus && matchesSearch;
         });
-    }, [lessons, statusFilter, searchQuery]);
+    }, [lessons, statusFilter, debouncedSearchQuery]);
     
     // Pagination
     const offset = currentPage * itemsPerPage;
@@ -87,26 +90,24 @@ export function SearchComponent({
                             ))}
                         </ul>
                         
-                        {pageCount > 1 && (
-                            <ReactPaginate
-                                breakLabel="..."
-                                nextLabel=">"
-                                onPageChange={handlePageClick}
-                                pageRangeDisplayed={5}
-                                pageCount={pageCount}
-                                previousLabel="<"
-                                renderOnZeroPageCount={null}
-                                containerClassName="flex gap-2 justify-center my-8"
-                                pageClassName="inline-block"
-                                pageLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
-                                activeClassName="bg-teal-200 text-white"
-                                activeLinkClassName="bg-teal-200 text-white hover:bg-gray-100"
-                                previousClassName="inline-block"
-                                nextClassName="inline-block"
-                                previousLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
-                                nextLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
-                            />
-                        )}
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel=">"
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={5}
+                            pageCount={pageCount}
+                            previousLabel="<"
+                            renderOnZeroPageCount={null}
+                            containerClassName="flex gap-2 justify-center my-8"
+                            pageClassName="inline-block"
+                            pageLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
+                            activeClassName="bg-teal-200 text-white"
+                            activeLinkClassName="bg-teal-200 text-white hover:bg-gray-100"
+                            previousClassName="inline-block"
+                            nextClassName="inline-block"
+                            previousLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
+                            nextLinkClassName="px-3 py-2 border rounded hover:bg-gray-100"
+                        />
                     </>
                 ) : (
                     <p>No Courses Available.</p>
