@@ -76,6 +76,7 @@ export function SearchComponent({
                 setSearchQuery={setSearchQuery}
                 statusFilter={statusFilter}
                 setStatusFilter={setStatusFilter}
+                course={course}
             />
             <div className="flex justify-start flex-col">
                 {!lessons ? (

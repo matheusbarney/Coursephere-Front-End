@@ -14,16 +14,15 @@ export function CourseCard({ course }) {
         if (error) return <p className="text-red-500">Error loading lessons.</p>;
         return (
             <>
-                <br />
-                <CourseList course={course} />
+                <StandardHeader text={course.name} />
+                <div className="pt-4"><CourseList course={course} /></div>
                 <SearchComponent course={course} lessons={lessons} />
             </>
         );
     };
 
     return (
-        <div className="flex-col place-items-center rounded-3xl bg-white px-2 py-15 shadow-xl dark:bg-white/10">
-            <StandardHeader text="Course Details" />
+        <div className="h-xl flex-col place-items-center rounded-3xl bg-white px-2 py-8 shadow-xl dark:bg-white/10">
             {renderContent()}
         </div>
     );

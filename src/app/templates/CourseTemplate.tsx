@@ -13,8 +13,12 @@ export function CourseTemplate() {
   const navigate = useNavigate();
   const { canManageCourse } = useAuth();
 
-  function navigateToEdit() {
+  function navEditCourse() {
     navigate(`/course/${courseId}/edit`);
+  }
+
+  function navEditInstructors() {
+    navigate(`/course/${courseId}/edit/instructors`);
   }
 
   const renderContent = () => {
@@ -25,8 +29,9 @@ export function CourseTemplate() {
           <CourseCard course={course} />
 
           {canManageCourse(courseId) && (
-            <div className="pt-8">
-              <Button type="button" mainText="Edit Course" showText={true} onClick={navigateToEdit}/>
+            <div className="pt-8 flex gap-10">
+              <Button type="button" mainText="Edit Course" showText={true} onClick={navEditCourse}/>
+              <Button type="button" mainText="Edit Instructors" showText={true} onClick={navEditInstructors}/>
             </div>
           )}
       </>)

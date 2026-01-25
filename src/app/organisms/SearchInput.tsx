@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import{ Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth'
 
 interface SearchInputProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   statusFilter: string;
   setStatusFilter: (status: string) => void;
+  course;
 };
 
-export function SearchInput({searchQuery, setSearchQuery, statusFilter, setStatusFilter}: SearchInputProps) {
+export function SearchInput({searchQuery, setSearchQuery, statusFilter, setStatusFilter, course}: SearchInputProps) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const { isInstructor } = useAuth();
 
     const statuses = ['All status', 'Draft', 'Published', 'Archived'];
 
@@ -46,8 +50,14 @@ export function SearchInput({searchQuery, setSearchQuery, statusFilter, setStatu
                 </div>
 
                 <input type="search" id="search-dropdown" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-                className="rounded-2xl px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-xl focus:ring-brand focus:border-brand block w-2xl placeholder:text-body" 
+                className="rounded-2xl px-3 py-2.5 bg-white border border-default-medium text-heading text-xl focus:ring-brand focus:border-brand block w-2xl placeholder:text-body" 
                 placeholder="Search lessons" required />
+                {isInstructor(course.id) && (  <Link to={`/course/${course.id}/lesson/new`}>
+                    <button
+                    className="rounded-2xl px-3 py-2.5 bg-white border border-default-medium text-2xl hover:bg-neutral-200 block aspect-square" 
+                    
+                    >+</button>
+                </Link>)}
 
             </div>
         </form>
