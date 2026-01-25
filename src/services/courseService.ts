@@ -1,12 +1,12 @@
 import api from "./api";
 
 interface Course {
-    id: string | number;
+    id: number;
     name: string;
     description: string;
     start_date: string;
     end_date: string;
-    creator_id: string | number;
+    creator_id: number;
     instructors: string[];
 }
 
@@ -27,7 +27,7 @@ export const courseService = {
     },
 
     deleteById: async (id) => {
-        const res = await api.delete<void>(`/courses/${id}`);
+        const res = await api.delete(`/courses/${id}`);
         return res.data;
     },
 
@@ -41,4 +41,29 @@ export const courseService = {
         return response.data;
     },
 
+    addInstructor: async (id, user_id) => {
+        const course = await courseService.getById(id);
+        const updatedInstructors = course.instructors.includes(user_id)
+            ? course.instructors
+            : [...course.instructors, user_id];
+        
+        // Update the course with the new instructors array
+        const response = await api.patch<Course>(`/courses/${id}`, {
+            instructors: updatedInstructors
+        });
+        return response.data;
+    },
+
+    removeInstructor: async (id, user_id) => {
+    const course = await courseService.getById(id);
+    const updatedInstructors = course.instructors.filter(
+        instructorId => instructorId !== user_id
+    );
+    
+    // Update the course with the new instructors array
+    const response = await api.patch<Course>(`/courses/${id}`, {
+        instructors: updatedInstructors
+    });
+    return response.data;
+    },
 }

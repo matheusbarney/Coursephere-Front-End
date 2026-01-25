@@ -1,12 +1,12 @@
 import api from "./api";
 
 interface Lesson {
-    id: string | number;
-    course_id: string | number;
-    creator_id: string | number;
+    id: number;
+    course_id: number;
+    creator_id: number;
     title: string;
     status: "draft" | "published" | "archived";
-    publish_date: Date | string;
+    publish_date: string;
     video_url: string;
 }
 

@@ -56,7 +56,7 @@
       "title": "Introdução aos Hooks",
       "status": "published",
       "publish_date": "2026-01-19",
-      "video_url": "https://www.youtube.com/watch?v=XIMLoLxmTDw"
+      "video_url": "https://www.youtube.com/watch?v=c34CxHBm-Ic"
     },
     {
       "id": "102",
@@ -66,6 +66,24 @@
       "status": "draft",
       "publish_date": "2026-01-19",
       "video_url": "https://www.youtube.com/watch?v=XIMLoLxmTDw"
+    },
+    {
+      "id": "103",
+      "course_id": "1",
+      "creator_id": "1",
+      "title": "The ULTIMATE Beginner Guide to Minecraft (5 steps)",
+      "status": "archived",
+      "publish_date": "2026-01-19",
+      "video_url": "https://www.youtube.com/watch?v=-1Sy6iz43vg"
+    },
+    {
+      "id": "104",
+      "course_id": "1",
+      "creator_id": "2",
+      "title": "How To Enjoy MINECRAFT Longterm",
+      "status": "draft",
+      "publish_date": "2026-01-19",
+      "video_url": "https://www.youtube.com/watch?v=laObDohaX6I"
     },
     {
       "id": "201",

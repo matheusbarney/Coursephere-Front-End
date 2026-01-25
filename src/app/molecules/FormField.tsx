@@ -1,6 +1,7 @@
 import Input from '../atoms/Input';
 import { UseFormRegister, FieldErrors } from 'react-hook-form';
 
+
 interface FormFieldProps {
   register: UseFormRegister<any>;
   errors?: FieldErrors;
@@ -18,6 +19,8 @@ export function FormField({
   placeholder,
   type = "text"
 }: FormFieldProps) {
+
+  
   return (
     <div className="w-full py-4">
       <p className="pb-1 text-xl text-gray-800">{label}</p>

@@ -1,6 +1,6 @@
 import { Form } from '../organisms/Form';
 import { FormField } from '../molecules/FormField';
-import { SelectField } from '../molecules/selectField';
+import { SelectField } from '../molecules/SelectField';
 import Button from '../atoms/Button';
 
 import useAuth from '../../hooks/useAuth';
@@ -10,14 +10,21 @@ import { useEffect, useState } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { lessonService } from '../../services/lessonService'
+import { compareAsc } from 'date-fns';
 
+import useToast from '../../hooks/useToast';
 
 const schema = z.object({
-  title: z.string().min(1, "Title is required."),
+  title: z.string().min(3, "Title is required."),
   status: z.string().min(1, "Include a status."),
   publish_date: z.iso.date().min(1, "A publish date is required."),
-  video_url: z.string().min(1, "A URL to the video is required."),
-})
+  video_url: z.url("A valid URL is required."),
+}).refine(schema => {
+    return compareAsc(new Date(), new Date(schema.publish_date)) <= 0;
+  }, {
+    message: "Lesson must be published at a future date.",
+    path: ["publish_date"] // This shows the error on the publish_date field
+  });
 
 type FormFields = z.infer<typeof schema>;
 
@@ -29,6 +36,7 @@ export function EditLessonMain()
     const isEditMode = Boolean(lessonId);
     const [creator_id, setCreator] = useState(null);
     const { user, RefreshPermissions } = useAuth();
+    const { toastError } = useToast();
 
     const { 
         register, handleSubmit, setError, reset, formState: { errors, isSubmitting } 
@@ -49,7 +57,7 @@ export function EditLessonMain()
                     video_url: lesson.video_url,
                 });
             } catch (error) {
-                setError("root", { message: 'Failed to load lesson.',});
+                toastError("Failed to load lesson");
             };
             };
     
