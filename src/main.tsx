@@ -19,10 +19,6 @@ import ProtectedRoutes, { RerouteLogin, RerouteCourseDenied, RerouteLessonDenied
  //localStorage.clear();
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    errorElement: <NotFound />,
-  },
   // Login 
   // Reroute if already logged in
   {element: <RerouteLogin />, children: [
@@ -32,7 +28,7 @@ const router = createBrowserRouter([
   // Protected Routes : CourseSphere Main Pages
   // Dashboard, Course and Lesson pages 
   {element: <ProtectedRoutes />, children: [
-      {path: "/", element: <Dashboard />},
+      {path: "/", element: <Dashboard />, errorElement: <NotFound />,},
       {path: "/course/:courseId", children: [ 
           { index: true, element: <CourseDetails />},
           { path: "course-details", element: <CourseDetails />}

@@ -18,6 +18,7 @@ export const useLessons = ({ courseId }: useLessonsProps = {}) => {
                 const data = courseId 
                     ? await lessonService.getByCourse(courseId) 
                     : await lessonService.getAll();
+                if (courseId) console.log('courseId is here:', courseId)
                 setLessons(data);
                 setError(null);
             } catch (err) {
