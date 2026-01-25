@@ -19,7 +19,7 @@ export function DashCard({
                 <p className="font-bold">{course.name}</p>
             <p>{course.description}</p>
             <p>Start: {formatDate(course.start_date)}</p>
-            <p>End: {formatDate(course.start_date)}</p>
+            <p>End: {formatDate(course.end_date)}</p>
             </Link>
         </div>;
 }
