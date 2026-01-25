@@ -12,7 +12,7 @@ export function SearchItem({
 
     const navigate = useNavigate();
     const { toastInfo } = useToast();
-    const { canManageLesson, canDeleteLesson } = useAuth();
+    const { canManageLesson, canDeleteLesson, canManageCourse } = useAuth();
     const thumbnail = getYouTubeThumbnail(lesson.video_url)
 
     const handleDelete = async (lessonId: number) => {
@@ -51,7 +51,7 @@ export function SearchItem({
         )}
 
         <div className="flex-1 min-w-0 flex items-center px-2 sm:px-0">
-          {canManageLesson(lesson.id) ? (
+          {(canManageLesson(lesson.id) || canManageCourse(course.id)) ? (
             <Link 
               to={`/course/${course.id}/lesson/${lesson.id}/edit`}
               className="w-full"
@@ -68,7 +68,7 @@ export function SearchItem({
         </div>
 
         {/* Delete Button */}
-        {canDeleteLesson(course.id, lesson.id) && (
+        {canDeleteLesson(course.id, lesson.id) ||  (
           <button
             onClick={() => handleDelete(lesson.id)}
             className="flex-shrink-0 self-center sm:self-stretch w-12 h-12 sm:w-10 sm:h-auto flex items-center 
