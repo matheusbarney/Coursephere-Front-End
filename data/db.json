@@ -40,8 +40,8 @@
     },
     {
       "id": "3",
-      "name": "UI/UX Design para Devs",
-      "description": "Princípios básicos de design para desenvolvedores front-end.",
+      "name": "Curso de Minecraft",
+      "description": "Princípios básicos de Minecraft.",
       "start_date": "2026-01-19",
       "end_date": "2026-04-19",
       "creator_id": "1",
@@ -68,24 +68,6 @@
       "video_url": "https://www.youtube.com/watch?v=XIMLoLxmTDw"
     },
     {
-      "id": "103",
-      "course_id": "1",
-      "creator_id": "1",
-      "title": "The ULTIMATE Beginner Guide to Minecraft (5 steps)",
-      "status": "archived",
-      "publish_date": "2026-01-19",
-      "video_url": "https://www.youtube.com/watch?v=-1Sy6iz43vg"
-    },
-    {
-      "id": "104",
-      "course_id": "1",
-      "creator_id": "2",
-      "title": "How To Enjoy MINECRAFT Longterm",
-      "status": "draft",
-      "publish_date": "2026-01-19",
-      "video_url": "https://www.youtube.com/watch?v=laObDohaX6I"
-    },
-    {
       "id": "201",
       "course_id": "2",
       "creator_id": "2",
@@ -93,6 +75,24 @@
       "status": "published",
       "publish_date": "2026-01-19",
       "video_url": "https://www.youtube.com/watch?v=XIMLoLxmTDw"
+    },
+    {
+      "id": "301",
+      "course_id": "3",
+      "creator_id": "1",
+      "title": "The ULTIMATE Beginner Guide to Minecraft (5 steps)",
+      "status": "archived",
+      "publish_date": "2026-01-19",
+      "video_url": "https://www.youtube.com/watch?v=-1Sy6iz43vg"
+    },
+    {
+      "id": "302",
+      "course_id": "3",
+      "creator_id": "2",
+      "title": "How To Enjoy MINECRAFT Longterm",
+      "status": "draft",
+      "publish_date": "2026-01-19",
+      "video_url": "https://www.youtube.com/watch?v=laObDohaX6I"
     }
   ]
 }
