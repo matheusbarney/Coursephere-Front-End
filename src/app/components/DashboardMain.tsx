@@ -25,7 +25,7 @@ export function DashboardMain({}) {
         return (
             <>
             {myCourses.length > 0 ? (
-                <ul>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 py-4">
                     {myCourses.map((c) => (
                         <li key={c.id}>
                             <DashCard   course={c}  />
@@ -40,8 +40,12 @@ export function DashboardMain({}) {
     };
 
     return (
-        <div className="flex-col place-items-center rounded-3xl bg-white px-10 py-15 shadow-xl dark:bg-white/10">
-            <StandardHeader text="My Dashboard" />
+        <div className="flex-col place-items-center rounded-3xl bg-white px-10 py-8 lg:py-15 shadow-xl dark:bg-white/10
+        h-140 md:h-155 lg:h-160
+        mx-40">
+            <div className="py-0 mx-5 lg:mx-0 lg:py-5">
+                <StandardHeader text="My Dashboard" />
+            </div>
             {renderContent()}
         </div>
     );

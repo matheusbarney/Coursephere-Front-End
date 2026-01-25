@@ -12,7 +12,7 @@ interface ButtonProps {
 
 function Button({ type, icon, mainText, showText, isSubmitting, onClick }: ButtonProps) {
   return (<button disabled={isSubmitting} onClick={onClick} type={type} className="rounded-2xl 
-            bg-cyan-600 px-12 py-6 text-2xl text-neutral-100 shadow-xl hover:bg-cyan-700 hover:text-neutral-200 
+            bg-cyan-600 px-10 py-4 text-2xl text-neutral-100 shadow-xl hover:bg-cyan-700 hover:text-neutral-200 
             disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto ">
             {showText && isSubmitting ? "Loading..." : <div className="flex justify-center">{icon}{mainText}</div>}
         </button>);

@@ -14,8 +14,13 @@ export function DashCard({
         });
     };
 
-  return <div className="border-r border-b border-l border-gray-400 lg:border-l lg:border-t lg:border-gray-400 
-                        bg-white hover:bg-teal-50 rounded-xl p-4 m-4 flex flex-col justify-between leading-normal shadow-lg">
+  return <div className="border border-gray-400 bg-white hover:bg-teal-50 
+                            rounded-xl p-3 sm:p-4 
+                            flex flex-col justify-between leading-normal 
+                            shadow-lg hover:shadow-xl transition-all duration-200
+                            h-full lg:h-100
+                            text-xs md:text-base lg:text-xl
+                            ">
             <Link to={`/course/${course.id}/course-details`}>
                 <p className="font-bold">{course.name}</p>
             <p>{course.description}</p>

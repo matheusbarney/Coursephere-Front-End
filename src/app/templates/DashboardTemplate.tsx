@@ -24,13 +24,13 @@ export function DashboardTemplate({}) {
 
 
 
-  return <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-emerald-200 to-cyan-400 dark:bg-cyan-950">
+  return <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-emerald-200 to-cyan-400 dark:bg-cyan-950 py-4">
         <DashboardMain     />
-        <div className="flex justify-center gap-10">
-          <div className="pt-8">
+        <div className="flex justify-center gap-1 md:gap-10 pt-4 h-min">
+          <div>
             <Button type="button" mainText="Logout" showText={true} onClick={handleLogout}/>
           </div>
-          <div className="pt-8">
+          <div>
             <Link to="/courses/new"><Button type="button" mainText="New Course" showText={true} /></Link>
           </div>
         </div>
