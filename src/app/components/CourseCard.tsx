@@ -25,7 +25,7 @@ export function CourseCard({ course }) {
         <div className="border border-gray-400 bg-white
                             rounded-xl  py-4 px-6
                             mt-8  
-                            flex flex-col justify-between leading-normal 
+                            flex flex-col justify-between items-center leading-normal 
                             shadow-lg transition-all duration-200
                             h-full lg:h-170 
                             w-80 lg:w-4xl

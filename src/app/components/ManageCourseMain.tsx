@@ -98,7 +98,7 @@ export function EditCourseMain()
 
 
 
-  return <div className="flex-col w-full lg:w-200 h-screen place-items-center bg-white px-10 shadow-xl dark:bg-white/10">
+  return <div className="flex-col flex w-full lg:w-200 h-screen place-items-center bg-white px-10 shadow-xl dark:bg-white/10">
           <h1 className="text-gray-600-bold flex justify-center py-4 text-5xl">{isEditMode ? 'Edit Course' : 'Add Course'}</h1>
 
           <Form handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors}>

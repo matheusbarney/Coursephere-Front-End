@@ -12,7 +12,7 @@ export function SearchComponent({
 }) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 2;
+    const itemsPerPage = 3;
 
     // Read from URL, otherwise defaults
     const searchQuery = searchParams.get('search') || '';
@@ -70,7 +70,7 @@ export function SearchComponent({
         setCurrentPage(event.selected);
     };
 
-    return <div className="pt-4 md:pt-9 bg-col">
+    return <div className="pt-9 w-full">
             <SearchInput 
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
@@ -83,7 +83,7 @@ export function SearchComponent({
                     <LoadingText />
                 ) : filteredLessons.length > 0 ? (
                     <>
-                        <ul className='flex '>    
+                        <ul className='h-57 overflow-auto '>    
                             {currentLessons.map(l => (
                                 <li key={l.id} className="">
                                     <SearchItem course={course} lesson={l} />

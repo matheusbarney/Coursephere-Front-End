@@ -29,7 +29,7 @@ export function CourseTemplate() {
           <CourseCard course={course} />
 
           {canManageCourse(courseId) && (
-            <div className="flex justify-center gap-1 md:gap-10 pt-4 h-min">
+            <div className="flex justify-center gap-1 md:gap-10 pt-4 h-min ">
               <Button type="button" mainText="Edit Course" showText={true} onClick={navEditCourse}/>
               <Button type="button" mainText="Edit Instructors" showText={true} onClick={navEditInstructors}/>
             </div>
