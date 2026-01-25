@@ -1,12 +1,12 @@
 import api from "./api";
 
 interface Course {
-    id: string | number;
+    id: number;
     name: string;
     description: string;
     start_date: string;
     end_date: string;
-    creator_id: string | number;
+    creator_id: number;
     instructors: string[];
 }
 

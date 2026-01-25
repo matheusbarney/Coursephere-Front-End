@@ -11,25 +11,25 @@ export const useAuth = () => {
   const { user, Login, Logout, RefreshPermissions } = context;
 
   // Permission check functions
-  const canManageCourse = (courseId: string | number): boolean => {
+  const canManageCourse = (courseId: number): boolean => {
     if (!user) return false;
     const id = typeof courseId === 'string' ? parseInt(courseId) : courseId;
     return user.courses_owned.includes(id);
   };
 
-  const isInstructor = (courseId: string | number): boolean => {
+  const isInstructor = (courseId: number): boolean => {
     if (!user) return false;
     const id = typeof courseId === 'string' ? parseInt(courseId) : courseId;
     return user.courses_instructing.includes(id) || user.courses_owned.includes(id);
   };
 
-  const canManageLesson = (lessonId: string | number): boolean => {
+  const canManageLesson = (lessonId: number): boolean => {
     if (!user) return false;
     const id = typeof lessonId === 'string' ? parseInt(lessonId) : lessonId;
     return user.lessons_created.includes(id);
   };
 
-  const canDeleteLesson = (courseId: string | number, lessonId: string | number): boolean => {
+  const canDeleteLesson = (courseId: number, lessonId: number): boolean => {
     if (!user) return false;
     // Course owner can delete any lesson, or lesson creator can delete their own
     return canManageCourse(courseId) || canManageLesson(lessonId);

@@ -14,7 +14,7 @@ import useToast from '../../hooks/useToast';
 
 const schema = z.object({
   name: z.string().min(1, "Name is required."),
-  description: z.string().min(1, "Description is required."),
+  description: z.string().min(1, "Description is required.").max(500, "Description must be under 500 characters long."),
   start_date: z.iso.date().min(1, "A start date is required."),
   end_date: z.iso.date().min(1, "An end date is required.")
 }).refine(schema => {

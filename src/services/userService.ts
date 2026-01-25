@@ -1,7 +1,7 @@
 import api from "./api";
 
-interface User {
-    id: string | number;
+export interface User {
+    id: number;
     name: string;
     email: string;
     password: string;
