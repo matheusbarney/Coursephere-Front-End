@@ -23,13 +23,13 @@ export const useAuth = () => {
     return user.courses_instructing.includes(id) || user.courses_owned.includes(id);
   };
 
-  const canManageLesson = (lessonId: number): boolean => {
+  const canManageLesson = (lessonId: number | string): boolean => {
     if (!user) return false;
     const id = typeof lessonId === 'string' ? parseInt(lessonId) : lessonId;
     return user.lessons_created.includes(id);
   };
 
-  const canDeleteLesson = (courseId: number, lessonId: number): boolean => {
+  const canDeleteLesson = (courseId: number | string, lessonId: number): boolean => {
     if (!user) return false;
     // Course owner can delete any lesson, or lesson creator can delete their own
     return canManageCourse(courseId) || canManageLesson(lessonId);

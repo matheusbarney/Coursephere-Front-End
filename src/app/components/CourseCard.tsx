@@ -15,7 +15,7 @@ export function CourseCard({ course }) {
         return (
             <>
                 <div className="pt-12"><StandardHeader text={course.name} /></div>
-                <div className="pt-8"><CourseList course={course} /></div>
+                <div className="pt-2 md:pt-8"><CourseList course={course} /></div>
                 <SearchComponent course={course} lessons={lessons} />
             </>
         );
@@ -24,14 +24,13 @@ export function CourseCard({ course }) {
     return (
         <div className="border border-gray-400 bg-white
                             rounded-xl  py-4 px-6
-                            mt-8  
                             flex flex-col justify-between items-center leading-normal 
                             shadow-lg transition-all duration-200
-                            h-full lg:h-170 
-                            w-80 lg:w-4xl
+                            h-148 md:h-152 lg:h-170 
+                            w-80 md:w-3xl lg:w-4xl
                             text-xs md:text-base lg:text-xl
                             ">
             {renderContent()}
         </div>
-    );
+    )
 }

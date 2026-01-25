@@ -36,28 +36,49 @@ export function SearchItem({
         return null;                                                                                                                      
     }              
 
-    return <div className="w h-20 border-r border-b border-l border-gray-400 lg:border-l lg:border-t lg:border-gray-400 
-                            bg-white hover:bg-teal-50 rounded-xl m-4 flex flex-col justify-between leading-normal shadow-lg  ">
-                            <div className="flex justify-between ">
-                                {thumbnail && (                                                                                                                     
-                                    <img                                                                                                                              
-                                    src={thumbnail}                                                                                                                 
-                                    alt={lesson.title}                                                                                                              
-                                    className="h-20 w-auto object-cover rounded-xl"                                                                                      
-                                    />                                                                                                                                
-                                )}         
-                                {canManageLesson(lesson.id) ? (
-                                    <Link to={`/course/${course.id}/lesson/${lesson.id}/edit`}>
-                                        <p className="font-bold m-2 text-black-200 break-words flex-1 mx-2 overflow-hidden" style={{fontSize: 'clamp(0.75rem, 2vw, 1rem)'}}>{lesson.title}</p>
-                                    </Link>
-                                ) : (
-                                        <p className="font-bold text-center m-2 text-black-200 break-words flex-1 mx-2 overflow-hidden" style={{fontSize: 'clamp(0.75rem, 2vw, 1rem)'}}>{lesson.title}</p>
-                                )}
-                                { canDeleteLesson(course.id,lesson.id) && (<p className="text-red-300 w-min h-20 flex justify-center 
-                                flex-col items-center text-xl bold border-2 rounded-xl p-1.5 hover:bg-red-100"
-                                onClick={() => handleDelete(lesson.id)}
-                                >X</p>)}
-                            </div>
-            </div>;
-    }
-  
+  return (
+    <div className="w-full border border-gray-300 bg-white hover:bg-teal-50 rounded-xl m-2 sm:m-4 shadow-lg transition-colors duration-200">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 p-2 sm:p-3">
+
+        {thumbnail && (
+          <div className="flex-shrink-0 w-full sm:w-32">
+            <img
+              src={thumbnail}
+              alt={lesson.title}
+              className="w-full h-32 sm:h-20 object-cover rounded-lg"
+            />
+          </div>
+        )}
+
+        <div className="flex-1 min-w-0 flex items-center px-2 sm:px-0">
+          {canManageLesson(lesson.id) ? (
+            <Link 
+              to={`/course/${course.id}/lesson/${lesson.id}/edit`}
+              className="w-full"
+            >
+              <p className="font-bold text-gray-800 hover:text-teal-600 transition-colors line-clamp-2 text-sm sm:text-base">
+                {lesson.title}
+              </p>
+            </Link>
+          ) : (
+            <p className="font-bold text-gray-800 line-clamp-2 text-sm sm:text-base">
+              {lesson.title}
+            </p>
+          )}
+        </div>
+
+        {/* Delete Button */}
+        {canDeleteLesson(course.id, lesson.id) && (
+          <button
+            onClick={() => handleDelete(lesson.id)}
+            className="flex-shrink-0 self-center sm:self-stretch w-12 h-12 sm:w-10 sm:h-auto flex items-center 
+            justify-center text-red-400 hover:text-red-600 hover:bg-red-50 border-2 border-red-300 hover:border-red-400 rounded-lg 
+            font-bold text-lg"
+          >
+            ×
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}

@@ -14,8 +14,18 @@ function Button({ type, icon, mainText, showText, isSubmitting, onClick }: Butto
   return (<button disabled={isSubmitting} onClick={onClick} type={type} className="rounded-2xl 
             bg-cyan-600 px-10 py-4 text-2xl text-neutral-100 shadow-xl hover:bg-cyan-700 hover:text-neutral-200 
             disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto ">
-            {showText && isSubmitting ? "Loading..." : <div className="flex justify-center">{icon}{mainText}</div>}
-        </button>);
+      {showText && isSubmitting ? (
+        <span className="text-neutral-100" style={{fontSize: 'clamp(1rem, 3vw, 1.5rem)'}}>
+          Loading...
+        </span>
+      ) : (
+        <div className="flex justify-center items-center gap-2 text-neutral-100" style={{fontSize: 'clamp(1rem, 3vw, 1.5rem)'}}>
+          {icon}
+          {mainText}
+        </div>
+      )}
+    </button>
+  );
 }
 
 export default Button;

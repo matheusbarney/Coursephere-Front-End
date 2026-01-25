@@ -34,7 +34,7 @@ export function DashboardTemplate({}) {
             <Link to="/courses/new"><Button type="button" mainText="New Course" showText={true} /></Link>
           </div>
         </div>
-      </div>;
+      </div>
 }
   
 

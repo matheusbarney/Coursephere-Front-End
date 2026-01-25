@@ -70,7 +70,7 @@ export function SearchComponent({
         setCurrentPage(event.selected);
     };
 
-    return <div className="pt-9 w-full">
+    return <div className="pt-3 md:pt-9 w-full">
             <SearchInput 
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
